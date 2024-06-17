@@ -18,6 +18,12 @@ namespace Api.Repositorios
         {
             return await _dbContext.Pessoa.ToListAsync();
         }
+        public async Task<List<PessoaModel>> GetAllStatus1()
+        {
+            return await _dbContext.Pessoa
+                                   .Where(p => p.PessoaStatus == 1)
+                                   .ToListAsync();
+        }
 
         public async Task<PessoaModel> GetById(int id)
         {

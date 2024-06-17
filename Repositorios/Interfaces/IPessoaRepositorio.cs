@@ -6,6 +6,8 @@ namespace Api.Repositorios.Interfaces
     {
         Task<List<PessoaModel>> GetAll();
 
+        Task<List<PessoaModel>> GetAllStatus1();
+
         Task<PessoaModel> GetById(int id);
 
         Task<PessoaModel> InsertPessoa(PessoaModel pessoa);

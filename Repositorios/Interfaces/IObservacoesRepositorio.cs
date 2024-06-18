@@ -8,6 +8,9 @@ namespace Api.Repositorios.Interfaces
 
         Task<ObservacoesModel> GetById(int id);
 
+        Task<List<ObservacoesModel>> GetByIdPessoa(int id);
+
+
         Task<ObservacoesModel> InsertObservacao(ObservacoesModel observacao);
 
         Task<ObservacoesModel> UpdateObservacao(ObservacoesModel observacao, int id);

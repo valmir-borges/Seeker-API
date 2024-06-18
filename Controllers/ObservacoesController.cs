@@ -30,6 +30,15 @@ namespace Api.Controllers
             return Ok(observacao);
         }
 
+        [HttpGet("GetByIdPessoa/{id}")]
+        public async Task<ActionResult<List<ObservacoesModel>>> GetByIdPessoa(int id)
+        {
+            List<ObservacoesModel> observacoes = await _observacoesRepositorio.GetByIdPessoa(id);
+            return Ok(observacoes);
+        }
+
+
+
         [HttpPost("CreateObservacao")]
         public async Task<ActionResult<ObservacoesModel>> InsertObservacao([FromBody] ObservacoesModel observacoesModel)
         {

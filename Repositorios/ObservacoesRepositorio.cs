@@ -2,6 +2,9 @@
 using Api.Models;
 using Api.Repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Repositorios
 {
@@ -22,6 +25,13 @@ namespace Api.Repositorios
         public async Task<ObservacoesModel> GetById(int id)
         {
             return await _dbContext.Observacoes.FirstOrDefaultAsync(x => x.ObservacoesId == id);
+        }
+
+        public async Task<List<ObservacoesModel>> GetByIdPessoa(int pessoaId)
+        {
+            return await _dbContext.Observacoes
+                                  .Where(x => x.PessoaId == pessoaId)
+                                  .ToListAsync();
         }
 
         public async Task<ObservacoesModel> InsertObservacao(ObservacoesModel observacao)
@@ -50,7 +60,6 @@ namespace Api.Repositorios
                 await _dbContext.SaveChangesAsync();
             }
             return observacoes;
-
         }
 
         public async Task<bool> DeleteObservacao(int id)

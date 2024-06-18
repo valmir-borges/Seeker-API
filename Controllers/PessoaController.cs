@@ -38,7 +38,7 @@ namespace Api.Controllers
             return Ok(pessoa);
         }
 
-        [HttpPost("CreatePessoa")]
+        [HttpPost("InsertPessoa")]
         public async Task<ActionResult<PessoaModel>> InsertPessoa([FromBody] PessoaModel pessoaModel)
         {
             PessoaModel pessoa = await _pessoaRepositorio.InsertPessoa(pessoaModel);

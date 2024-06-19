@@ -32,9 +32,19 @@ namespace Api.Repositorios
 
         public async Task<UsuarioModel> InsertUsuario(UsuarioModel user)
         {
-            await _dbContext.Usuario.AddAsync(user);
-            await _dbContext.SaveChangesAsync();
-            return user;
+            //Verificando se já existe o email
+            UsuarioModel existe = await _dbContext.Usuario.FirstOrDefaultAsync(x => x.UsuarioEmail == user.UsuarioEmail);
+
+            if(existe == null)
+            {
+                await _dbContext.Usuario.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
+                return user;
+            }
+            else
+            {              
+               throw new Exception("Email já existe!");
+            }
         }
 
         public async Task<UsuarioModel> UpdateUsuario(UsuarioModel user, int id)
